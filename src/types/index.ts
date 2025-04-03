@@ -37,3 +37,14 @@ export interface ApiResponse {
   bitcoin: Record<string, BitcoinExchange>;
   taxes: Tax[];
 }
+
+export interface Currencies {
+  source: string;
+  [key: string]: Currency | string;
+};
+export interface Stocks {
+  [key: string]: Stock | string;
+};
+export interface Bitcoins {
+  [key: string]: BitcoinExchange | string;
+};

@@ -9,7 +9,7 @@ import Home from '@/pages/home';
 function App() {
   return (
     <QuotesProvider>
-       <ThemeProvider defaultTheme="light" storageKey="price-voyager-theme">
+       <ThemeProvider defaultTheme="light" storageKey="price-tracker-theme">
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />

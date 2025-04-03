@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '@/components/Navbar';
 import { Button } from '@/components/ui/button';
@@ -19,7 +18,7 @@ const Home = () => {
                 Track Financial Markets in Real-Time
               </h1>
               <p className="text-lg md:text-xl text-muted-foreground mb-10 max-w-3xl mx-auto">
-                Monitor currencies, stocks, and cryptocurrency prices with beautiful visualizations and real-time updates.
+                Monitor currencies, stocks, and cryptocurrency prices with real-time update.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button size="lg" onClick={() => navigate('/auth')}>
@@ -67,22 +66,6 @@ const Home = () => {
                 </p>
               </div>
             </div>
-          </div>
-        </section>
-
-        <section className="py-16 px-6 md:px-12 lg:px-24 bg-primary text-primary-foreground">
-          <div className="max-w-5xl mx-auto text-center">
-            <h2 className="text-3xl font-bold mb-6">Ready to start tracking?</h2>
-            <p className="text-lg mb-8 text-primary-foreground/80">
-              Create your account now and get access to our comprehensive financial tracking dashboard.
-            </p>
-            <Button 
-              size="lg" 
-              variant="secondary" 
-              onClick={() => navigate('/auth')}
-            >
-              Sign Up for Free
-            </Button>
           </div>
         </section>
       </main>
