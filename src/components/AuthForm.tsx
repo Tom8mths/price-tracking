@@ -1,4 +1,4 @@
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
+import { Card, CardHeader, CardContent, CardTitle, CardDescription } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
@@ -16,13 +16,14 @@ export function AuthForm() {
   return (
     <Card className="w-96 mx-auto mt-20 p-4">
       <CardHeader>
-        <h2 className="text-xl font-semibold">Login</h2>
+        <CardTitle>Login</CardTitle>
+        <CardDescription>Enter your credentials to see the dashboard</CardDescription>
       </CardHeader>
       <CardContent>
-        <Label>Email</Label>
+        <Label className="mb-2">Email</Label>
         <Input value={email} onChange={(e) => setEmail(e.target.value)} />
         
-        <Label className="mt-2">Senha</Label>
+        <Label className="mt-2 mb-2">Senha</Label>
         <Input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
 
         <Button className="mt-4 w-full" onClick={handleLogin}>Entrar</Button>

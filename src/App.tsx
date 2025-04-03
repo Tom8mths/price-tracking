@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { QuotesProvider } from '@/hooks/useQuotes'
+import { QuotesProvider } from '@/context/QuotesContext'
 import NotFound from '@/pages/notfound';
 import Dashboard from '@/pages/dashboard';
 import Auth from '@/pages/auth';

@@ -6,9 +6,10 @@
   ],
   "compilerOptions": {
     "moduleResolution": "node16",
+    "module": "Node16",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./*"]
     },
   }
 }
