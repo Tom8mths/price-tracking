@@ -1,18 +1,24 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { getQuotation } from "../services/api";
+import { ApiResponse } from "../types/index";
 
-const QuotesContext = createContext([]);
+const QuotesContext = createContext<ApiResponse | null>(null);
 
 import { ReactNode } from "react";
 
 export const QuotesProvider = ({ children }: { children: ReactNode }) => {
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState<ApiResponse | null>(null);
 
   useEffect(() => {
     const fetchQuotes = async () => {
-      const data = await getQuotation('USD-BRL,EUR-BRL,GBP-BRL,JPY-BRL');
-      if (!data) return;
-      setQuotes(data);
+      try {
+        const data = await getQuotation();
+
+        if (!data) return;
+        setQuotes(data);
+      } catch (error) {
+        console.error("Error fetching quotes:", error);
+      }
     };
 
     fetchQuotes();
