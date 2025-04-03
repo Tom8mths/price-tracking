@@ -10,7 +10,6 @@ export const getQuotation = async () => {
     if (data && data.results) { 
       return data.results;
     }
-    throw new Error('Invalid response structure');
   } catch (error) {
     console.error('Error fetching quotation:', error);
     throw error;
