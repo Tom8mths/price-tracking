@@ -36,6 +36,8 @@ export interface ApiResponse {
   available_sources: string[];
   bitcoin: Record<string, BitcoinExchange>;
   taxes: Tax[];
+  loading: boolean;
+  error: string | null;
 }
 
 export interface Currencies {

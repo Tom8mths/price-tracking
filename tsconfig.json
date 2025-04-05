@@ -9,7 +9,7 @@
     "module": "Node16",
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["src/*"]
     },
   }
 }

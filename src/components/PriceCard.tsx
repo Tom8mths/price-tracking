@@ -8,7 +8,7 @@ interface PriceCardProps {
   subtitle?: string;
   value: number | string;
   variation?: number;
-  secondaryValue?: number | string;
+  secondaryValue?: number | string | null;
   secondaryLabel?: string;
   onClick?: () => void;
 }
@@ -64,7 +64,7 @@ const PriceCard: React.FC<PriceCardProps> = ({
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div className={`flex items-center gap-1 text-sm font-medium ${
-                    isPositive ? 'text-positive' : isNeutral ? 'text-muted-foreground' : 'text-negative'
+                    isPositive ? 'text-positive text-green-500' : isNeutral ? 'text-muted-foreground' : 'text-negative text-red-500'
                   }`}>
                     {isPositive ? (
                       <TrendingUp className="h-4 w-4" />
