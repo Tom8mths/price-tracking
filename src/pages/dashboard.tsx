@@ -28,6 +28,16 @@ const Dashboard = () => {
   const [selectedTab, setSelectedTab] = useState<'currencies' | 'stocks' | 'bitcoin'>('currencies');
   const [selectedEntity, setSelectedEntity] = useState<ChartEntity | null>(null);
 
+
+  const handleEntitySelect = (type: EntityType, code: string, name: string, variation: number) => {
+    setSelectedEntity({
+      type,
+      code,
+      name,
+      variation
+    });
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar />
@@ -113,7 +123,7 @@ const Dashboard = () => {
                   </div>
                 ) : Object.keys(quotes.currencies).length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(quotes.currencies).map(([key, currency]: [string, Currency]) => (
+                    {Object.entries(quotes.currencies).slice(1).map(([key, currency]: [string, Currency]) => (
                       <PriceCard
                         key={key}
                         title={currency.name}
@@ -122,6 +132,12 @@ const Dashboard = () => {
                         variation={currency.variation}
                         secondaryValue={currency.sell}
                         secondaryLabel="Sell"
+                        onClick={() => handleEntitySelect(
+                          EntityType.CURRENCY,
+                          key,
+                          currency.name,
+                          currency.variation
+                        )}
                       />
                     ))}
                   </div>
@@ -155,6 +171,12 @@ const Dashboard = () => {
                         subtitle={stock.location}
                         value={stock.points}
                         variation={stock.variation}
+                        onClick={() => handleEntitySelect(
+                          EntityType.STOCK,
+                          key,
+                          stock.name,
+                          stock.variation
+                        )}
                       />
                     ))}
                   </div>
@@ -190,6 +212,12 @@ const Dashboard = () => {
                         variation={exchange.variation}
                         secondaryValue={exchange.buy}
                         secondaryLabel="Buy"
+                        onClick={() => handleEntitySelect(
+                          EntityType.BITCOIN,
+                          key,
+                          exchange.name,
+                          exchange.variation
+                        )}
                       />
                     ))}
                   </div>
