@@ -45,7 +45,7 @@ yarn install
 VITE_API_KEY=your_finance_api_key_here
 
 ### Backend API URL (used for authentication and other internal services)
-VITE_API_URL=http://localhost:3000/api
+VITE_API_URL=http://localhost:3000
 
 Backend repository available at:
 
