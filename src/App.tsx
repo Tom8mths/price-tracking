@@ -6,24 +6,30 @@ import Auth from '@/pages/auth';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Home from '@/pages/home';
 import { AuthProvider } from '@/context/AuthContext';
+import ProtectedRoute from '@/components/ProtectedRoute';
 
 function App() {
   return (
+    <BrowserRouter>
     <AuthProvider>
     <QuotesProvider>
        <ThemeProvider defaultTheme="light" storageKey="price-tracker-theme">
-      <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/dashboard" element={
+            <ProtectedRoute>
+                <Dashboard />
+            </ProtectedRoute>
+            }
+            />
           <Route path="/auth" element={<Auth />} />
         
           <Route path="*" element={<NotFound />} />
         </Routes>
-      </BrowserRouter>
       </ThemeProvider>
     </QuotesProvider>
     </AuthProvider>
+  </BrowserRouter>
   )
 }
 

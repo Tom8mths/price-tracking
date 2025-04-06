@@ -1,5 +1,6 @@
 import { AuthService } from '@/services/auth.services';
-import { createContext, useContext, useState, useEffect } from 'react';
+import { createContext, useContext, useState, useEffect, use } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type User = {
   id: string;
@@ -30,6 +31,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [isLoading, setIsLoading] = useState(true);
   const [sessionTimeout, setSessionTimeout] = useState<NodeJS.Timeout | null>(null);
 
+  const navigate = useNavigate();
   const resetSessionTimeout = () => {
     if (sessionTimeout) {
       clearTimeout(sessionTimeout);
@@ -85,7 +87,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setIsLoading(true);
 
     try {
-      await new Promise(resolve => setTimeout(resolve, 800));
+      await AuthService.login(email, password);
       
       const users = JSON.parse(localStorage.getItem('users') || '[]');
       const foundUser = users.find((u: any) => 
@@ -151,6 +153,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const logout = () => {
     localStorage.removeItem('user');
     setUser(null);
+    navigate('/auth');
     if (sessionTimeout) {
       clearTimeout(sessionTimeout);
       setSessionTimeout(null);
