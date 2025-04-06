@@ -3,7 +3,7 @@ import { QuotesService } from "@/services/quotes.services";
 import { ApiResponse } from "../types/index";
 
 
-type QuotesContextType = ApiResponse & {
+type QuotesContextType = {
   quotes: ApiResponse | null;
   loading: boolean;
   error: string | null;
