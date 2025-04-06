@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { User, LogOut, Moon, Sun } from 'lucide-react';
 import { useTheme } from '@/components/ThemeProvider';
@@ -10,11 +10,27 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useAuth } from '@/context/AuthContext';
 
 const Navbar = () => {
   const { theme, setTheme } = useTheme();
   const [ isLoggedIn, setIsLoggedIn ] = useState(false);
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, [user])
+
+  const handleLogout = () => {
+    logout();
+    navigate('/auth');
+  };
 
   return (
     <nav className="flex justify-between items-center p-4 border-b">
@@ -40,13 +56,13 @@ const Navbar = () => {
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem disabled>
-                  <span className="font-medium">John</span>
+                  <span className="font-medium">{user?.name}</span>
                 </DropdownMenuItem>
                 <DropdownMenuItem disabled>
-                  <span className="text-xs text-muted-foreground">teste@mail.com</span>
+                  <span className="text-xs text-muted-foreground">{user?.email}</span>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
+                <DropdownMenuItem onClick={handleLogout}>
                   <LogOut className="mr-2 h-4 w-4" />
                   Log out
                 </DropdownMenuItem>
@@ -56,10 +72,7 @@ const Navbar = () => {
         ) : (
           <>
             <Link to="/auth">
-              <Button variant="ghost">Login</Button>
-            </Link>
-            <Link to="/auth">
-              <Button>Sign Up</Button>
+              <Button>Login / Sign Up</Button>
             </Link>
           </>
         )}

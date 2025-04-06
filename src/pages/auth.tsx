@@ -1,12 +1,12 @@
 import Navbar from "@/components/Navbar";
-import { AuthForm } from "@/components/AuthForm";
+import { AuthForms } from "@/components/auth/AuthForms";
 
 const Auth = () => {
  
   return (
     <div className="">
       <Navbar />
-      <AuthForm />
+      <AuthForms />
     </div>
   );
 };

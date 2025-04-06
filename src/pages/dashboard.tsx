@@ -27,7 +27,7 @@ const Dashboard = () => {
   const { quotes, loading, error, getHistoricalData } = useQuotes();
   const [selectedTab, setSelectedTab] = useState<'currencies' | 'stocks' | 'bitcoin'>('currencies');
   const [selectedEntity, setSelectedEntity] = useState<ChartEntity | null>(null);
-
+  const [searchQuery, setSearchQuery] = useState('');
 
   const handleEntitySelect = (type: EntityType, code: string, name: string, variation: number) => {
     setSelectedEntity({
@@ -50,13 +50,15 @@ const Dashboard = () => {
             <div className="relative flex-1 md:w-64">
               <Input
                 placeholder="Search..."
-                value=''
+                value={searchQuery}
                 className="pr-10"
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
                 <Button
                   variant="ghost"
                   size="icon"
                   className="absolute right-0 top-0 h-full"
+                  onClick={() => setSearchQuery('')}
                 >
                   <X className="h-4 w-4" />
                 </Button>

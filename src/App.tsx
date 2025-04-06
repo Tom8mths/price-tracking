@@ -5,9 +5,11 @@ import Dashboard from '@/pages/dashboard';
 import Auth from '@/pages/auth';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import Home from '@/pages/home';
+import { AuthProvider } from '@/context/AuthContext';
 
 function App() {
   return (
+    <AuthProvider>
     <QuotesProvider>
        <ThemeProvider defaultTheme="light" storageKey="price-tracker-theme">
       <BrowserRouter>
@@ -21,6 +23,7 @@ function App() {
       </BrowserRouter>
       </ThemeProvider>
     </QuotesProvider>
+    </AuthProvider>
   )
 }
 
