@@ -6,8 +6,8 @@
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "moduleResolution": "node16",
-    "module": "Node16",
+    "moduleResolution": "bundler",
+    "module": "ESNext",
     "baseUrl": ".",
     "noImplicitAny": false,
     "noUnusedParameters": false,
@@ -15,8 +15,10 @@
     "allowJs": true,
     "noUnusedLocals": false,
     "strictNullChecks": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "paths": {
       "@/*": ["src/*"]
-    },
+    }
   }
 }

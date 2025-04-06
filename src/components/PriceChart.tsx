@@ -3,14 +3,15 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { HistoricalDataPoint } from '@/context/QuotesContext';
 import { 
-  XAxis, 
-  YAxis, 
+  XAxis as RawXAxis,
+  YAxis as RawYAxis,
   LineChart, 
   Line, 
   CartesianGrid, 
   Tooltip, 
-  ResponsiveContainer, 
-  Legend
+  ResponsiveContainer,
+  XAxisProps,
+  YAxisProps
 } from 'recharts';
 import { Loader2 } from 'lucide-react';
 
@@ -20,6 +21,9 @@ interface PriceChartProps {
   isLoading?: boolean;
   variation?: number;
 }
+
+const XAxis = RawXAxis as unknown as React.FC<XAxisProps>;
+const YAxis = RawYAxis as unknown as React.FC<YAxisProps>;
 
 const PriceChart: React.FC<PriceChartProps> = ({
   title,

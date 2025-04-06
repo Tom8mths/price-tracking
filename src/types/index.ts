@@ -31,7 +31,7 @@ export interface Tax {
 }
 
 export interface ApiResponse {
-  currencies: Record<string, Currency>;
+  currencies?: Record<string, Currency>;
   stocks: Record<string, Stock>;
   available_sources: string[];
   bitcoin: Record<string, BitcoinExchange>;

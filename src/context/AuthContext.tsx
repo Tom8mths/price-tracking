@@ -1,5 +1,5 @@
 import { AuthService } from '@/services/auth.services';
-import { createContext, useContext, useState, useEffect, use } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 type User = {

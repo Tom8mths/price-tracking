@@ -24,7 +24,7 @@ type ChartEntity = {
 };
 
 const Dashboard = () => {
-  const { quotes, loading, error, getHistoricalData } = useQuotes();
+  const { quotes, loading, getHistoricalData } = useQuotes();
   const [selectedTab, setSelectedTab] = useState<'currencies' | 'stocks' | 'bitcoin'>('currencies');
   const [selectedEntity, setSelectedEntity] = useState<ChartEntity | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
