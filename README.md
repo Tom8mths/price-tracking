@@ -1,4 +1,4 @@
-# Frontend Project
+# Price Tracking app
 
 This is the frontend application for consuming currency quotation and authentication APIs.
 
