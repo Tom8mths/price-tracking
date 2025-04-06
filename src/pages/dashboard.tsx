@@ -123,9 +123,9 @@ const Dashboard = () => {
                       </div>
                     ))}
                   </div>
-                ) : Object.keys(quotes.currencies).length > 0 ? (
+                ) : Object.keys(quotes?.currencies || {}).length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(quotes.currencies).slice(1).map(([key, currency]: [string, Currency]) => (
+                    {Object.entries(quotes?.currencies || {}).slice(1).map(([key, currency]: [string, Currency]) => (
                       <PriceCard
                         key={key}
                         title={currency.name}
@@ -163,9 +163,9 @@ const Dashboard = () => {
                       </div>
                     ))}
                   </div>
-                ) : Object.keys(quotes.stocks).length > 0 ? (
+                ) : Object.keys(quotes?.stocks || {}).length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(quotes.stocks).map(([key, stock]: [string, Stock]) => (
+                    {Object.entries(quotes?.stocks || {}).map(([key, stock]: [string, Stock]) => (
                       <PriceCard
                         key={key}
                         title={stock.name}
@@ -202,9 +202,9 @@ const Dashboard = () => {
                       </div>
                     ))}
                   </div>
-                ) : Object.keys(quotes.bitcoin).length > 0 ? (
+                ) : Object.keys(quotes?.bitcoin || {}).length > 0 ? (
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {Object.entries(quotes.bitcoin).map(([key, exchange]: [string, BitcoinExchange]) => (
+                    {Object.entries(quotes?.bitcoin || {}).map(([key, exchange]: [string, BitcoinExchange]) => (
                       <PriceCard
                         key={key}
                         title={exchange.name}
