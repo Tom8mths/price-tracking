@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState, ReactNode } from "react";
-import { getQuotation } from "../services/api";
+import { QuotesService } from "@/services/quotes.services";
 import { ApiResponse } from "../types/index";
 
 
@@ -21,12 +21,11 @@ export const QuotesProvider: React.FC<{ children: ReactNode }> = ({ children }) 
   const [quotes, setQuotes] = useState<ApiResponse | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
-  console.log('quotes', quotes);
   
 
   const fetchQuotes = async () => {
     try {
-      const data = await getQuotation();
+      const data = await QuotesService.getQuotation();
 
       if (!data) {
         setError("No data found");

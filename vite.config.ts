@@ -7,10 +7,10 @@ export default defineConfig({
   plugins: [react(), tailwindcss(), tsconfigPaths()],
   server: {
     proxy: {
-      '/api': {
+      '/finance-api': {
         target: 'https://api.hgbrasil.com',
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        rewrite: (path) => path.replace(/^\/finance-api/, ''),
       },
     },
   },
