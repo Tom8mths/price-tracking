@@ -2,6 +2,9 @@
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY . .
+ARG VITE_API_KEY
+ENV VITE_API_KEY=$VITE_API_KEY
+
 RUN npm install && npm run build
 
 # Step 2: Serve the app
