@@ -25,7 +25,7 @@ Make sure you have the following installed:
 
 ---
 
-### Installation
+# Installation
 
 Clone the repository:
 
@@ -36,7 +36,7 @@ cd price-tracking
 ### Install dependencies:
 
 npm install
-# or
+### or
 yarn install
 
 # Environmental variables
