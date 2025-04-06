@@ -47,27 +47,53 @@ export const QuotesProvider: React.FC<{ children: ReactNode }> = ({ children }) 
     fetchQuotes();
   }, []);
 
-  const getHistoricalData = (type: 'currency' | 'stock' | 'bitcoin', code: string): HistoricalDataPoint[] => {
-    if (!quotes) return [];
+  const generateHistoricalData = (
+    type: 'currency' | 'stock' | 'bitcoin',
+    code: string,
+    days = 30
+  ): HistoricalDataPoint[] => {
+    let baseValue = 0;
+    let volatility = 0;
 
-    const keyMap = {
-      currency: 'currencies',
-      stock: 'stocks',
-      bitcoin: 'bitcoin',
-    } as const;
+    if (type === 'currency' && quotes?.currencies) {
+      const currency = quotes.currencies[code];
+      baseValue = currency?.buy || 0;
+      volatility = 0.02;
+    } else if (type === 'stock' && quotes?.stocks) {
+      const stock = quotes.stocks[code];
+      baseValue = stock?.points || 0;
+      volatility = 0.03;
+    } else if (type === 'bitcoin' && quotes?.bitcoin) {
+      const bitcoin = quotes.bitcoin[code];
+      baseValue = bitcoin?.last || 0;
+      volatility = 0.05;
+    }
 
-    const dataKey = keyMap[type];
-  
-    const dataset = quotes[dataKey]?.[code];
+    const today = new Date();
+    const result: HistoricalDataPoint[] = [];
 
-    console.log('dataset', dataset);
-    console.log('type', type);
-    console.log('code', code);
-    
+    for (let i = days; i >= 0; i--) {
+      const date = new Date(today);
+      date.setDate(date.getDate() - i);
+      
+      const change = (Math.random() - 0.5) * 2 * volatility;
+      baseValue = baseValue * (1 + change);
+      
+      result.push({
+        date: date.toISOString().split('T')[0],
+        value: parseFloat(baseValue.toFixed(4))
+      });
+    }
 
-    if (!dataset || !('history' in dataset)) return [];
-  
-    return dataset.history as HistoricalDataPoint[];
+    return result;
+  };
+
+
+  const getHistoricalData = (
+    type: 'currency' | 'stock' | 'bitcoin',
+    code: string
+  ): HistoricalDataPoint[] => {
+    return generateHistoricalData(type, code);
   };
 
   return (
