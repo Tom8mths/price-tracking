@@ -54,12 +54,12 @@ https://github.com/Tom8mths/price-tracking-api
 # Finance API URL (this is proxied in vite.config.ts)
 VITE_FINANCE_API_URL=/api/finance
 
-### Running the Project 
+# Running the Project 
 
 npm run dev
-# or
+### or
 yarn dev
 
-# The app will be available at:
+### The app will be available at:
 
 http://localhost:5173
