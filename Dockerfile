@@ -2,6 +2,8 @@
 FROM node:18-alpine AS builder
 WORKDIR /app
 COPY . .
+ARG VITE_API_BASE_URL
+ENV VITE_API_URL=https://price-tracking-api-docker-293372619781.us-central1.run.app
 
 RUN npm install && npm run build
 RUN cp .env.production .env
