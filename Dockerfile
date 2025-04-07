@@ -4,8 +4,11 @@ WORKDIR /app
 COPY . .
 ARG VITE_API_KEY
 ENV VITE_API_KEY=a5617e2a
+ARG VITE_API_BASE_URL
+ENV VITE_API_BASE_URL=https://api.hgbrasil.com
 
 RUN npm install && npm run build
+RUN cp .env.production .env
 
 # Step 2: Serve the app
 FROM node:18-alpine

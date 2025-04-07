@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export const financeApi = axios.create({
-  baseURL: "/finance-api",
+  baseURL: import.meta.env.VITE_API_BASE_URL || '/finance-api',
 });
 
 export const api = axios.create({
