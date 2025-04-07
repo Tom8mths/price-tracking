@@ -5,7 +5,7 @@ const API_KEY = import.meta.env.VITE_API_KEY;
 export const QuotesService = {
   getQuotation: async () => {
     try {
-      const response = await financeApi.get(`/finance?key=${API_KEY}`);
+      const response = await financeApi.get(`/finance?format=json-cors&key=${API_KEY}`);
       const data = response.data;
       if (data?.results) {
         return data.results;
